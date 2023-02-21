@@ -18,37 +18,24 @@
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <artifactId>hop-assemblies-plugins-databases</artifactId>
+        <artifactId>hop-plugins-databases</artifactId>
         <groupId>org.apache.hop</groupId>
         <version>2.4.0-SNAPSHOT</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>hop-databases-duckdb</artifactId>
 
-    <artifactId>hop-assemblies-plugins-databases-mssqlnative</artifactId>
-    <version>2.4.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <name>Hop Assemblies Plugins Databases MS SQL Server (Native)</name>
-    <description />
-
-    <properties>
-        <mssqlnative.version>11.2.3.jre11</mssqlnative.version>
-    </properties>
-
+    <name>Hop Plugins Databases DuckDB</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.hop</groupId>
-            <artifactId>hop-databases-mssqlnative</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>${mssqlnative.version}</version>
+            <groupId>org.duckdb</groupId>
+            <artifactId>duckdb_jdbc</artifactId>
+            <version>0.7.0</version>
         </dependency>
     </dependencies>
 
