@@ -56,7 +56,7 @@ public class HopServerEditor extends MetadataEditor<HopServer> {
   // Service
   private Text wName;
   private TextVar wHostname;
-  private TextVar wShutdown;
+  private TextVar wShutdownPort;
   private TextVar wPort;
   private TextVar wWebAppName;
   private TextVar wUsername;
@@ -138,7 +138,7 @@ public class HopServerEditor extends MetadataEditor<HopServer> {
     wWebAppName.addModifyListener(lsMod);
     wUsername.addModifyListener(lsMod);
     wPassword.addModifyListener(lsMod);
-    wShutdown.addModifyListener(lsMod);
+    wShutdownPort.addModifyListener(lsMod);
     wProxyHost.addModifyListener(lsMod);
     wProxyPort.addModifyListener(lsMod);
     wNonProxyHosts.addModifyListener(lsMod);
@@ -274,21 +274,21 @@ public class HopServerEditor extends MetadataEditor<HopServer> {
     fdlShutdown.right = new FormAttachment(middle, -margin);
     wlShutdown.setLayoutData(fdlShutdown);
 
-    wShutdown = new TextVar(manager.getVariables(), wServiceComp, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
+    wShutdownPort = new TextVar(manager.getVariables(), wServiceComp, SWT.SINGLE | SWT.LEFT | SWT.BORDER);
 
-    PropsUi.setLook(wShutdown);
+    PropsUi.setLook(wShutdownPort);
     FormData fdShutdown = new FormData();
     fdShutdown.top = new FormAttachment(wPassword, margin * 2);
     fdShutdown.left = new FormAttachment(middle, 0); // To the right of the label
     fdShutdown.right = new FormAttachment(95, 0);
-    wShutdown.setLayoutData(fdShutdown);
+    wShutdownPort.setLayoutData(fdShutdown);
 
     // Https
     Label wlSSL = new Label(wServiceComp, SWT.RIGHT);
     wlSSL.setText(BaseMessages.getString(PKG, "HopServerDialog.UseSsl.Label"));
     PropsUi.setLook(wlSSL);
     FormData fd = new FormData();
-    fd.top = new FormAttachment(wShutdown, margin);
+    fd.top = new FormAttachment(wShutdownPort, margin);
     fd.left = new FormAttachment(0, 0);
     fd.right = new FormAttachment(middle, -margin);
     wlSSL.setLayoutData(fd);
@@ -418,7 +418,7 @@ public class HopServerEditor extends MetadataEditor<HopServer> {
     wWebAppName.setText(Const.NVL(server.getWebAppName(), ""));
     wUsername.setText(Const.NVL(server.getUsername(), ""));
     wPassword.setText(Const.NVL(server.getPassword(), ""));
-    wShutdown.setText(Const.NVL(server.getShutdownPort(), ""));
+    wShutdownPort.setText(Const.NVL(server.getShutdownPort(), ""));
     wProxyHost.setText(Const.NVL(server.getProxyHostname(), ""));
     wProxyPort.setText(Const.NVL(server.getProxyPort(), ""));
     wNonProxyHosts.setText(Const.NVL(server.getNonProxyHosts(), ""));
@@ -433,7 +433,7 @@ public class HopServerEditor extends MetadataEditor<HopServer> {
     server.setWebAppName(wWebAppName.getText());
     server.setUsername(wUsername.getText());
     server.setPassword(wPassword.getText());
-    server.setShutdownPort(wShutdown.getText());
+    server.setShutdownPort(wShutdownPort.getText());
     server.setProxyHostname(wProxyHost.getText());
     server.setProxyPort(wProxyPort.getText());
     server.setNonProxyHosts(wNonProxyHosts.getText());
