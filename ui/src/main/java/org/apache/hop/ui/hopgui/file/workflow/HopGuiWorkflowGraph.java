@@ -61,6 +61,7 @@ import org.apache.hop.core.plugins.ActionPluginType;
 import org.apache.hop.core.plugins.IPlugin;
 import org.apache.hop.core.plugins.PluginRegistry;
 import org.apache.hop.core.svg.SvgFile;
+import org.apache.hop.core.util.TranslateUtil;
 import org.apache.hop.core.util.Utils;
 import org.apache.hop.core.vfs.HopVfs;
 import org.apache.hop.core.xml.XmlHandler;
@@ -398,7 +399,7 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
 
     // Add a canvas below it, use up all space
     //
-    canvas = new Canvas(sashForm, SWT.NO_BACKGROUND);
+    canvas = new Canvas(sashForm, SWT.NO_BACKGROUND | SWT.BORDER);
     Listener listener = CanvasListener.getInstance();
     canvas.addListener(SWT.MouseDown, listener);
     canvas.addListener(SWT.MouseMove, listener);
@@ -2059,7 +2060,7 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
       parentId = HopGuiWorkflowNoteContext.CONTEXT_ID,
       type = GuiActionType.Delete,
       name = "i18n::HopGuiWorkflowGraph.ContextualAction.DeleteNote.Text",
-      tooltip = "HopGuiWorkflowGraph.ContextualAction.DeleteNote.Tooltip",
+      tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.DeleteNote.Tooltip",
       image = "ui/images/delete.svg",
       category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Basic.Text",
       categoryOrder = "1")
@@ -2124,7 +2125,7 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
       type = GuiActionType.Modify,
       name = "i18n::HopGuiWorkflowGraph.ContextualAction.DisableHop.Text",
       tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.DisableHop.Tooltip",
-      image = "ui/images/HOP_disable.svg",
+      image = "ui/images/hop-disable.svg",
       category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Basic.Text",
       categoryOrder = "1")
   public void disableHop(HopGuiWorkflowHopContext context) {
@@ -2163,7 +2164,7 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
       type = GuiActionType.Delete,
       name = "i18n::HopGuiWorkflowGraph.ContextualAction.DeleteHop.Text",
       tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.DeleteHop.Tooltip",
-      image = "ui/images/HOP_delete.svg",
+      image = "ui/images/hop-delete.svg",
       category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Basic.Text",
       categoryOrder = "1")
   public void deleteHop(HopGuiWorkflowHopContext context) {
@@ -2266,13 +2267,29 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
     return true;
   }
 
-  // TODO
-  public void enableHopsBetweenSelectedActions() {
+  @GuiContextAction(
+      id = "workflow-graph-hop-10065-hop-enable-between-selected-actions",
+      parentId = HopGuiWorkflowHopContext.CONTEXT_ID,
+      type = GuiActionType.Modify,
+      name = "i18n::HopGuiWorkflowGraph.ContextualAction.EnableBetweenSelectedActions.Text",
+      tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.EnableBetweenSelectedActions.Tooltip",
+      image = "ui/images/hop-enable-between-selected.svg",
+      category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Bulk.Text",
+      categoryOrder = "3")
+  public void enableHopsBetweenSelectedActions(final HopGuiWorkflowHopContext context) {
     enableHopsBetweenSelectedActions(true);
   }
 
-  // TODO
-  public void disableHopsBetweenSelectedActions() {
+  @GuiContextAction(
+      id = "workflow-graph-hop-10075-hop-disable-between-selected-actions",
+      parentId = HopGuiWorkflowHopContext.CONTEXT_ID,
+      type = GuiActionType.Modify,
+      name = "i18n::HopGuiWorkflowGraph.ContextualAction.DisableBetweenSelectedActions.Text",
+      tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.DisableBetweenSelectedActions.Tooltip",
+      image = "ui/images/hop-disable-between-selected.svg",
+      category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Bulk.Text",
+      categoryOrder = "3")
+  public void disableHopsBetweenSelectedActions(final HopGuiWorkflowHopContext context) {
     enableHopsBetweenSelectedActions(false);
   }
 
@@ -2317,7 +2334,7 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
       type = GuiActionType.Modify,
       name = "i18n::HopGuiWorkflowGraph.ContextualAction.EnableDownstream.Text",
       tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.EnableDownstream.Tooltip",
-      image = "ui/images/HOP_enable_downstream.svg",
+      image = "ui/images/hop-enable-downstream.svg",
       category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Bulk.Text",
       categoryOrder = "3")
   public void enableHopsDownstream(HopGuiWorkflowHopContext context) {
@@ -2330,7 +2347,7 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
       type = GuiActionType.Modify,
       name = "i18n::HopGuiWorkflowGraph.ContextualAction.DisableDownstream.Text",
       tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.DisableDownstream.Tooltip",
-      image = "ui/images/HOP_disable_downstream.svg",
+      image = "ui/images/hop-disable-downstream.svg",
       category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Bulk.Text",
       categoryOrder = "3")
   public void disableHopsDownstream(HopGuiWorkflowHopContext context) {
@@ -2967,7 +2984,7 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
       type = GuiActionType.Modify,
       name = "i18n::HopGuiWorkflowGraph.ContextualAction.DetachAction.Text",
       tooltip = "i18n::HopGuiWorkflowGraph.ContextualAction.DetachAction.Tooltip",
-      image = "ui/images/HOP_delete.svg",
+      image = "ui/images/hop-delete.svg",
       category = "i18n::HopGuiWorkflowGraph.ContextualAction.Category.Basic.Text",
       categoryOrder = "1")
   public void detachAction(HopGuiWorkflowActionContext context) {
@@ -3326,7 +3343,9 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
         });
 
     ToolItem item = toolBarWidgets.findToolItem(TOOLBAR_ITEM_SHOW_EXECUTION_RESULTS);
-    item.setToolTipText(BaseMessages.getString(PKG, "HopGui.Tooltip.ShowExecutionResults"));
+    item.setToolTipText(
+        TranslateUtil.translate(
+            "i18n:org.apache.hop.ui.hopgui:HopGui.Tooltip.ShowExecutionResults", PKG));
     item.setImage(GuiResource.getInstance().getImageShowResults());
   }
 
@@ -3387,7 +3406,9 @@ public class HopGuiWorkflowGraph extends HopGuiAbstractGraph
     }
 
     ToolItem toolItem = toolBarWidgets.findToolItem(TOOLBAR_ITEM_SHOW_EXECUTION_RESULTS);
-    toolItem.setToolTipText(BaseMessages.getString(PKG, "HopGui.Tooltip.HideExecutionResults"));
+    toolItem.setToolTipText(
+        TranslateUtil.translate(
+            "i18n:org.apache.hop.ui.hopgui:HopGui.Tooltip.HideExecutionResults", PKG));
     toolItem.setImage(GuiResource.getInstance().getImageHideResults());
   }
 

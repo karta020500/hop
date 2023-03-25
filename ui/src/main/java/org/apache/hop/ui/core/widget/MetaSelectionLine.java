@@ -171,7 +171,9 @@ public class MetaSelectionLine<T extends IHopMetadata> extends Composite {
     }
     fdLabel.top = new FormAttachment(0, margin + (EnvironmentUtils.getInstance().isWeb() ? 3 : 0));
     wLabel.setLayoutData(fdLabel);
-    wLabel.setText(labelText);
+    if ( labelText!=null ) {
+      wLabel.setText(labelText);
+    }
     wLabel.setToolTipText(toolTipText);
     wLabel.requestLayout(); // Avoid GTK error in log
 
@@ -187,20 +189,19 @@ public class MetaSelectionLine<T extends IHopMetadata> extends Composite {
 
     // Toolbar for default actions
     //
-    wToolBar = new ToolBar(this, SWT.FLAT | SWT.HORIZONTAL);
+    wToolBar = new ToolBar(this, SWT.FLAT | SWT.HORIZONTAL);    
+    PropsUi.setLook(wToolBar, PropsUi.WIDGET_STYLE_DEFAULT);
     FormData fdToolBar = new FormData();
     fdToolBar.right = new FormAttachment(100, 0);
     fdToolBar.top = new FormAttachment(0, 0);
     wToolBar.setLayoutData(fdToolBar);
-    //wToolBar.setBackgroundMode(SWT.INHERIT_DEFAULT);
-    wToolBar.setBackground(GuiResource.getInstance().getColorGreen());
-    //wToolBar.setForeground(GuiResource.getInstance().getColorBackground());
-
+    
     // Add more toolbar items from plugins.
     //
     GuiToolbarWidgets toolbarWidgets = new GuiToolbarWidgets();
-    toolbarWidgets.registerGuiPluginObject(this);
-    toolbarWidgets.setItemBackgroundColor(GuiResource.getInstance().getColorBackground());
+    toolbarWidgets.registerGuiPluginObject(this); 
+    // Removed for Windows dark mode
+    // toolbarWidgets.setItemBackgroundColor(GuiResource.getInstance().getColorBackground());
     toolbarWidgets.createToolbarWidgets(wToolBar, GUI_PLUGIN_TOOLBAR_PARENT_ID);
 
     int textFlags = SWT.SINGLE | SWT.LEFT | SWT.BORDER;
@@ -210,7 +211,12 @@ public class MetaSelectionLine<T extends IHopMetadata> extends Composite {
     wCombo = new ComboVar(this.variables, this, textFlags, toolTipText);
     FormData fdCombo = new FormData();
     if (leftAlignedLabel) {
-      fdCombo.left = new FormAttachment(wLabel, margin, SWT.RIGHT);
+      if ( labelText==null ) {
+        fdCombo.left = new FormAttachment(0, 0);
+      } 
+      else {
+        fdCombo.left = new FormAttachment(wLabel, margin, SWT.RIGHT);
+      }
     } else {
       fdCombo.left = new FormAttachment(middle, 0);
     }

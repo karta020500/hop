@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS books (
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
       <parallel>N</parallel>
-      <xloc>320</xloc>
+      <xloc>352</xloc>
       <yloc>48</yloc>
       <attributes_hac/>
     </action>

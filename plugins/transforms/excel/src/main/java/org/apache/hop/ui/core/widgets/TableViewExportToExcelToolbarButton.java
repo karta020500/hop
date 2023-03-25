@@ -60,7 +60,7 @@ public class TableViewExportToExcelToolbarButton {
   @GuiToolbarElement(
       root = TableView.ID_TOOLBAR,
       id = ID_TOOLBAR_EXPORT_EXCEL,
-      toolTip = "Export this data to a new Excel spreadsheet",
+      toolTip = "i18n::ExcelWidget.ExportToolbarButton.ToolTip",
       separator = true,
       image = "excelwriter.svg")
   public static void copyToNewGoogleDocsSpreadsheet(TableView tableView) {
@@ -124,6 +124,7 @@ public class TableViewExportToExcelToolbarButton {
           } else {
             // Convert back from String to the original data type
             //
+            cellValueMeta.setConversionMask(valueMeta.getConversionMask());
             Object object = valueMeta.convertData(cellValueMeta, string);
 
             switch (valueMeta.getType()) {

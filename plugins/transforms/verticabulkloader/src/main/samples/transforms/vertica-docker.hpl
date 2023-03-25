@@ -50,7 +50,7 @@ limitations under the License.
       <fontitalic>N</fontitalic>
       <fontname>Noto Sans</fontname>
       <fontsize>10</fontsize>
-      <height>469</height>
+      <height>486</height>
       <xloc>688</xloc>
       <yloc>48</yloc>
       <note>Run this sample in a Vertica Docker container:  
@@ -68,7 +68,8 @@ docker run -p 5433:5433 -p 5444:5444 \
 - host: localhost
 - username: dbadmin 
 - port: 5433
-- username: leave blank 
+- password: leave blank 
+- database name: vmart 
 
 4) create the "books" table
 CREATE TABLE books (
@@ -133,11 +134,13 @@ CREATE TABLE books (
         <stream_name>title</stream_name>
       </field>
     </fields>
+    <only_when_have_rows>N</only_when_have_rows>
     <rejected_data_filename/>
     <schema/>
     <specify_fields>Y</specify_fields>
     <stream_name/>
     <table>books</table>
+    <truncate>N</truncate>
     <attributes/>
     <GUI>
       <xloc>559</xloc>
@@ -222,19 +225,15 @@ CREATE TABLE books (
     <fields>
       <field>
         <name>publisher</name>
-        <rename/>
       </field>
       <field>
         <name>genre</name>
-        <rename/>
       </field>
       <field>
         <name>author</name>
-        <rename/>
       </field>
       <field>
         <name>title</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

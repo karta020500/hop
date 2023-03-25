@@ -1643,7 +1643,7 @@
     <constraints>None</constraints>
     <semantics>Returns the sequential number for the minute of the hour</semantics>
     <examples>
-      <example><expression>MINUTE(DATETIMEVALUE("2004-12-23 12:25:45"))</expression> <result>25</result> <level>2</level> <comment>MINUTE</comment></example>
+      <example><expression>MINUTE([date_field])</expression> <result>25</result> <level>2</level> <comment>MINUTE</comment></example>
     </examples>
   </function>
 
@@ -1670,6 +1670,8 @@
   <!-- MODE -->
 
   <!-- MONTH -->
+
+  <!-- MROUNDD -->
 
   <!-- NA -->
   <function>
@@ -1903,10 +1905,6 @@
     </examples>
   </function>
 
-  <!-- PPMT -->
-
-  <!-- PRODUCT -->
-
   <!-- POWER -->
   <function>
     <name>POWER</name>
@@ -1920,6 +1918,12 @@
       <example>   <expression>POWER(2,3)</expression>   <result>8</result>    <level>1</level>    <comment>Simple POWER</comment>    </example>
     </examples>
   </function>
+
+  <!-- PPMT -->
+
+  <!-- PRODUCT -->
+
+  <!-- PROPER -->
 
   <!-- PV -->
   <function>
@@ -2236,7 +2240,7 @@
     <constraints>None</constraints>
     <semantics>Returns the sequential number for the second of the minute</semantics>
     <examples>
-      <example><expression>SECOND(DATETIMEVALUE("2004-12-23 12:25:45"))</expression> <result>45</result> <level>2</level> <comment>MINUTE</comment></example>
+      <example><expression>SECOND([date_field])</expression> <result>45</result> <level>2</level> <comment>MINUTE</comment></example>
     </examples>
   </function>
 
@@ -2389,7 +2393,7 @@
 
   <!-- SUMX2PY2 -->
 
-  <!-- SUMxMY2 -->
+  <!-- SUMXMY2 -->
 
   <!-- SWITCH -->
   <function>
@@ -2909,17 +2913,17 @@ System 2    The week containing the first Thursday of the year is the first week
   	</examples>
   </function>
 
-  <function>
-    <category>%Category.Text</category>
-    <name>ASC</name>
-    <description>Converts full-width to half-width ASCII and katakana characters.</description>
-    <syntax>ASC( Text t1 )</syntax>
-    <returns>Text</returns>
-    <constraints>None</constraints>
-    <semantics></semantics>
-    <examples>
-    </examples>
-  </function>
+<!--  <function>-->
+<!--    <category>%Category.Text</category>-->
+<!--    <name>ASC</name>-->
+<!--    <description>Converts full-width to half-width ASCII and katakana characters.</description>-->
+<!--    <syntax>ASC( Text t1 )</syntax>-->
+<!--    <returns>Text</returns>-->
+<!--    <constraints>None</constraints>-->
+<!--    <semantics></semantics>-->
+<!--    <examples>-->
+<!--    </examples>-->
+<!--  </function>-->
 
   <function>
     <category>%Category.Text</category>
@@ -3125,20 +3129,6 @@ System 2    The week containing the first Thursday of the year is the first week
   <!-- Date/Time : this list is complete -->
   <function>
     <category>%Category.DateTime</category>
-    <name>DATETIMEVALUE</name>
-    <description>Returns an internal number for a text having a datetime format.</description>
-    <syntax>DATETIMEVALUE( Text D )</syntax>
-    <returns>DateTime</returns>
-    <constraints>None</constraints>
-    <semantics>This computes the serial number of the text string D, using the current locale. This function acceptS ISO date format (YYYY-MM-DD HH:mm:ss), which is locale-independent.</semantics>
-    <examples>
-      <example><expression>DATETIMEVALUE("2004-12-25 12:56:45")</expression> <result>2004-12-25 12:56:45</result> <level>2</level> <comment>DATETIMEVALUE</comment></example>
-    </examples>
-  </function>
-
-
-  <function>
-    <category>%Category.DateTime</category>
     <name>DAYS</name>
     <description>Calculates the number of days between two dates.</description>
     <syntax>DAYS( Date endDate, Date startDate )</syntax>
@@ -3180,23 +3170,6 @@ System 2    The week containing the first Thursday of the year is the first week
 	   	<example><expression>MONTH([.C7])</expression> <result>1</result> <level>1</level> <comment>Month extraction from date in cell.</comment></example>
 	   	<example><expression>MONTH(DATE(2006,5,21))</expression> <result>5</result> <level>1</level> <comment>Month extraction from DATE() value.</comment></example>
 	</examples>
-  </function>
-
-
-
-
-  <function>
-    <category>%Category.DateTime</category>
-    <name>YESTERDAY</name>
-    <description>Return the serial number of the previous day</description>
-    <syntax>YESTERDAY()</syntax>
-    <returns>Date</returns>
-    <constraints>None</constraints>
-    <semantics>This returns the previous day's serial number, using current locale. This only returns the date, not the datetime value.</semantics>
-    <examples>
-      <example><expression>TODAY()>YESTERDAY()</expression> <result>False</result> <level>1</level> <comment>Every date YESTERDAY() changes, but we know it's less than today.</comment></example>
-      <example><expression>INT(YESTERDAY)=YESTERDAY()</expression> <result>True</result> <level>1</level> <comment>YESTERDAY() returns an integer. WARNING: this test is allowed to fail if the locale transitions through midnight while computing this test; because YESTERDAY() is referenced twice, in some implementations this would result in a race condition) This is incredibly unlikely to occur in practice.</comment></example>
-    </examples>
   </function>
 
   <function>
